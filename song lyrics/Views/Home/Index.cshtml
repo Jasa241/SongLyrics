@@ -1,0 +1,37 @@
+﻿@model song_lyrics.Models.API
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lyrics Songs</title>
+    <link href="~/Content/Style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        <div class="Menu">
+            <input class="Inputs" type="text" name="Author" placeholder="Author" />
+            <input class="Inputs" type="text" name="Song" placeholder="Song" />
+            <input class="Inputs" type="submit" value="Submit" />
+        </div>
+    }
+
+    @if (ViewBag.Title == null || ViewBag.Title == "")
+    {
+        <div class="NotFound">
+            <div class="CD">
+                <div class="Polygon1"></div>
+                <div class="Polygon2"></div>
+            </div>
+            <p>Song Not Found</p>
+        </div>
+    }
+    else
+    {
+        <div class="Lyric">
+            <p>@Model.Lyrics</p>
+            @Html.ActionLink("PDF", "DownLoad", "Home", new { Title = ViewBag.Title }, new { @class = "PDF" })
+        </div>
+    }
+</body>
+</html>
