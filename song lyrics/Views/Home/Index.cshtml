@@ -15,23 +15,27 @@
             <input class="Inputs" type="submit" value="Submit" />
         </div>
     }
-
-    @if (ViewBag.Title == null || ViewBag.Title == "")
+    @if (ViewBag.Title != null)
     {
-        <div class="NotFound">
-            <div class="CD">
-                <div class="Polygon1"></div>
-                <div class="Polygon2"></div>
+        if (ViewBag.Title == "")
+        {
+            <div class="NotFound">
+                <div class="CD">
+                    <div class="Center"></div>
+                    <div class="Polygon1"></div>
+                    <div class="Polygon2"></div>
+                </div>
+                <p>Song Not Found</p>
             </div>
-            <p>Song Not Found</p>
-        </div>
+        }
+        else
+        {
+            <div class="Lyric">
+                <p>@Model.Lyrics</p>
+                @Html.ActionLink("PDF", "DownLoad", "Home", new { Title = ViewBag.Title }, new { @class = "PDF" })
+            </div>
+        }
     }
-    else
-    {
-        <div class="Lyric">
-            <p>@Model.Lyrics</p>
-            @Html.ActionLink("PDF", "DownLoad", "Home", new { Title = ViewBag.Title }, new { @class = "PDF" })
-        </div>
     }
 </body>
 </html>
